@@ -22,6 +22,14 @@ def valid(testlist, list1, list2, reqrelics):
     else:
         return False
     
+reload_data = True
+#passive dicts: 1e entry passive numbers, tweede entry fragments
+if reload_data:
+    passives = {}
+    df = pd.read_csv("passives.csv") 
+    
+allrelics = df.values[1:].ravel()
+allrelics = list(set(allrelics.tolist()))[1:]
     
 with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=False):
     uploaded_file = st.file_uploader("Choose a file")
@@ -29,19 +37,16 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          # Can be used wherever a "file-like" object is accepted:
          dataframe = pd.read_csv(uploaded_file)
          st.write(dataframe)
-
-    text_contents = '''This is some text'''
-    st.download_button('Download some text', text_contents, "relics.txt")
-
+            
+            
+    with st.expander("Selecteer relics + download", expanded=False):
+        options = st.multiselect(allrelics)
+        st.download_button('Download je relics', options, "relics.txt")
+    
 st.title("Passive Solver")
 
 results = []
 
-reload_data = True
-#passive dicts: 1e entry passive numbers, tweede entry fragments
-if reload_data:
-    passives = {}
-    df = pd.read_csv("passives.csv") 
 
 targetpassive = st.selectbox('Welke passive (1) wil je?',
      df.columns)
@@ -56,8 +61,6 @@ if targetpassive == targetpassive2:
 numrelics= st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=5, step=1)
 reqrelics = [int(df[targetpassive][0]), int(df[targetpassive2][0])]
 
-allrelics = df.values[1:].ravel()
-allrelics = list(set(allrelics.tolist()))[1:]
 
 reqfrags = False
 if st.checkbox("Verplichte relic?"):
