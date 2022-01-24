@@ -40,6 +40,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          string_data = stringio.read()
          saved_relics = string_data.strip('][').split(', ')
          saved_relics = [reli.replace("'", "") for reli in saved_relics]
+         saved_relics = [reli.replace('"', "") for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
          allrelics
          
