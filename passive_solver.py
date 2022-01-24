@@ -41,7 +41,8 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
             
             
     options = st.multiselect("Selecteer relics die je hebt:", allrelics)
-    st.download_button('Download je relics', options, "relics.txt")
+    
+    st.download_button('Download je relics', options, "relics.txt", mime='text/csv')
     
 st.title("Passive Solver")
 
