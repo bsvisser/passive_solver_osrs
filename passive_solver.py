@@ -23,12 +23,15 @@ def valid(testlist, list1, list2, reqrelics):
         return False
     
     
-add_selectbox = st.sidebar.selectbox(
-    "Hier gaan download/upload relic functionaliteiten komen",
-    ("Cool.")
-)
-
-
+st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=False)
+uploaded_file = st.file_uploader("Choose a file")
+if uploaded_file is not None:
+     # Can be used wherever a "file-like" object is accepted:
+     dataframe = pd.read_csv(uploaded_file)
+     st.write(dataframe)
+    
+st.download_button("Hier ga je kunnen downloaden", ["test"], file_name="relics.txt")
+    
 st.title("Passive Solver")
 
 results = []
