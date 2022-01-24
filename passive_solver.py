@@ -20,7 +20,7 @@ if reload_data:
 allrelics = df.values[1:].ravel()
 allrelics = list(set(allrelics.tolist()))[1:]
 
-allrelics
+
 def valid(testlist, list1, list2, reqrelics):
     overlap_list1 = [value for value in testlist if value in list1]
     overlap_list2 = [value for value in testlist if value in list2]
