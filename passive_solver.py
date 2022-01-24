@@ -31,7 +31,7 @@ reload_data = True
 #passive dicts: 1e entry passive numbers, tweede entry fragments
 if reload_data:
     passives = {}
-    df = pd.read_csv("E:\passives_league.csv") 
+    df = pd.read_csv("passives.csv") 
 
 targetpassive = st.selectbox('Welke passive (1) wil je?',
      df.columns)
