@@ -38,10 +38,10 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          # Can be used wherever a "file-like" object is accepted:
          stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
          string_data = stringio.read()
-         saved_relics = string_data.strip('][').split(', ')
-         saved_relics
-            
-            
+         saved_relics = string_data.strip('][').split(', ')            
+         allrelics = [value for value in allrelics if value in saved_relics]
+         print(allrelics)
+         
     options = st.multiselect("Selecteer relics die je hebt:", allrelics)
     
     st.download_button('Download je relics', str(options), "relics.txt", mime='text/csv')
