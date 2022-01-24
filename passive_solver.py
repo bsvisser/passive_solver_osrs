@@ -18,7 +18,7 @@ if reload_data:
     df = pd.read_csv("passives.csv") 
     
 allrelics = df.values[1:].ravel()
-allrelics = list(set(allrelics.tolist()))[1:]
+allrelics = list(set(allrelics.tolist()))[1:].sort()
 
 
 def valid(testlist, list1, list2, reqrelics):
@@ -43,7 +43,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          saved_relics = [reli.replace('"', '') for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
          
-    options = st.multiselect("Of selecteer relics die je hebt:", allrelics.sort())
+    options = st.multiselect("Of selecteer relics die je hebt:", allrelics)
     if st.checkbox("Gebruik dit"):
           allrelics = [value for value in allrelics if value in options]
     st.download_button('Download je relics', str(options), "relics.txt", mime='text/csv')
