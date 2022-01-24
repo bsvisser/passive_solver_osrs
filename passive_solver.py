@@ -81,7 +81,7 @@ if st.button("Run"):
     
     comblist = list1+list2
     comblist = [value for value in allrelics if value in comblist]
-
+    comblist
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
