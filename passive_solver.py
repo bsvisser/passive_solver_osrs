@@ -40,7 +40,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          string_data = stringio.read()
          saved_relics = string_data.strip('][').split(', ')            
          allrelics = [value for value in allrelics if value in saved_relics]
-         print(allrelics)
+         allrelics
          
     options = st.multiselect("Of selecteer relics die je hebt:", allrelics)
     if st.checkbox("Gebruik dit"):
