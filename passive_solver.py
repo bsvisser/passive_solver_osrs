@@ -42,7 +42,6 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          saved_relics = [reli.replace("'", "") for reli in saved_relics]
          saved_relics = [reli.replace('"', '') for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
-         allrelics
          
     options = st.multiselect("Of selecteer relics die je hebt:", allrelics)
     if st.checkbox("Gebruik dit"):
@@ -83,7 +82,6 @@ if st.button("Run"):
     
     comblist = list1+list2
     comblist = [value for value in allrelics if value in comblist]
-    comblist
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
@@ -96,7 +94,7 @@ if st.button("Run"):
                 if reqfrags != False and reqfrags not in possibility:
                     pass
                 else:
-                    results.append(possibility)
+                    results.append(list(set(possibility)))
 
     st.table(results)
                         
