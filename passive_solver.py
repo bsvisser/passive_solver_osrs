@@ -39,9 +39,8 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          st.write(dataframe)
             
             
-    with st.expander("Selecteer relics + download", expanded=False):
-        options = st.multiselect(allrelics)
-        st.download_button('Download je relics', options, "relics.txt")
+    options = st.multiselect(allrelics)
+    st.download_button('Download je relics', options, "relics.txt")
     
 st.title("Passive Solver")
 
