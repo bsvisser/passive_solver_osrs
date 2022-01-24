@@ -96,6 +96,6 @@ if st.button("Run"):
                 else:
                     results.append(list(set(possibility)))
 
-    st.table(results)
+    st.table(set(map(tuple, results)))
                         
     
