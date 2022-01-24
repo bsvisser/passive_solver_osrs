@@ -42,8 +42,9 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          allrelics = [value for value in allrelics if value in saved_relics]
          print(allrelics)
          
-    options = st.multiselect("Selecteer relics die je hebt:", allrelics)
-    
+    options = st.multiselect("Of selecteer relics die je hebt:", allrelics)
+    if st.checkbox("Gebruik dit"):
+         allrelics = options
     st.download_button('Download je relics', str(options), "relics.txt", mime='text/csv')
     
 st.title("Passive Solver")
