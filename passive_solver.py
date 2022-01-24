@@ -36,7 +36,8 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
     uploaded_file = st.file_uploader("Choose a file")
     if uploaded_file is not None:
          # Can be used wherever a "file-like" object is accepted:
-         saved_relics = upload_file.strip('][').split(', ')
+         string_data = stringio.read()
+         saved_relics = string_data.strip('][').split(', ')
          saved_relics
             
             
