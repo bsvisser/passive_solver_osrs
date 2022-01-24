@@ -11,7 +11,16 @@ import csv
 import pandas as pd 
 import itertools
 import numpy as np
+ 
+reload_data = True
+if reload_data:
+    passives = {}
+    df = pd.read_csv("passives.csv") 
     
+allrelics = df.values[1:].ravel()
+allrelics = list(set(allrelics.tolist()))[1:]
+
+allrelics
 def valid(testlist, list1, list2, reqrelics):
     overlap_list1 = [value for value in testlist if value in list1]
     overlap_list2 = [value for value in testlist if value in list2]
@@ -21,15 +30,7 @@ def valid(testlist, list1, list2, reqrelics):
         return True
     else:
         return False
-    
-reload_data = True
-#passive dicts: 1e entry passive numbers, tweede entry fragments
-if reload_data:
-    passives = {}
-    df = pd.read_csv("passives.csv") 
-    
-allrelics = df.values[1:].ravel()
-allrelics = list(set(allrelics.tolist()))[1:]
+  
     
 with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=False):
     uploaded_file = st.file_uploader("Choose a file")
