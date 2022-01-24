@@ -23,6 +23,12 @@ def valid(testlist, list1, list2, reqrelics):
         return False
     
     
+add_selectbox = st.sidebar.selectbox(
+    "Hier gaan download/upload relic functionaliteiten komen",
+    ("Cool.")
+)
+
+
 st.title("Passive Solver")
 
 results = []
