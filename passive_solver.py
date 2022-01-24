@@ -68,7 +68,7 @@ if st.button("Run"):
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
-    st.spinner(text="In progress...")
+        st.spinner(text="In progress...")
         if len(set(possibility)) < len(possibility) or np.nan in possibility:
             pass
         else:
