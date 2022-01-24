@@ -18,7 +18,7 @@ if reload_data:
     df = pd.read_csv("passives.csv") 
     
 allrelics = df.values[1:].ravel()
-allrelics = list(set(allrelics.tolist()))[1:].sort()
+allrelics = sorted(list(set(allrelics.tolist()))[1:])
 
 
 def valid(testlist, list1, list2, reqrelics):
