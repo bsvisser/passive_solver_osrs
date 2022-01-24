@@ -30,7 +30,7 @@ if uploaded_file is not None:
      dataframe = pd.read_csv(uploaded_file)
      st.write(dataframe)
     
-st.download_button("Hier ga je kunnen downloaden", ["test"], file_name="relics.txt")
+st.download_button("Hier ga je kunnen downloaden", file_name="relics.txt")
     
 st.title("Passive Solver")
 
