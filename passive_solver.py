@@ -23,15 +23,15 @@ def valid(testlist, list1, list2, reqrelics):
         return False
     
     
-st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=False)
-uploaded_file = st.file_uploader("Choose a file")
-if uploaded_file is not None:
-     # Can be used wherever a "file-like" object is accepted:
-     dataframe = pd.read_csv(uploaded_file)
-     st.write(dataframe)
-    
-text_contents = '''This is some text'''
-st.download_button('Download some text', text_contents, "relics.txt")
+if st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=False):
+    uploaded_file = st.file_uploader("Choose a file")
+    if uploaded_file is not None:
+         # Can be used wherever a "file-like" object is accepted:
+         dataframe = pd.read_csv(uploaded_file)
+         st.write(dataframe)
+
+    text_contents = '''This is some text'''
+    st.download_button('Download some text', text_contents, "relics.txt")
 
 st.title("Passive Solver")
 
