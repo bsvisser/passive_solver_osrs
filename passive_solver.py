@@ -76,12 +76,12 @@ if numrelics < reqrelics[0] or numrelics < reqrelics[1]:
         st.error("Kan niet geactiveerd worden, te weinig relics")
         
 if st.button("Run"):
-    my_bar = st.progress(0)
     list1 = list(df[targetpassive][1:])
     list2 = list(df[targetpassive2][1:])
     
     comblist = list1+list2
-    
+    comblist = [value for value in allrelics if value in comblist]
+
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
