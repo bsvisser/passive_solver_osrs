@@ -40,7 +40,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          st.write(dataframe)
             
             
-    options = st.multiselect(allrelics)
+    options = st.multiselect("Selecteer relics die je hebt:", allrelics)
     st.download_button('Download je relics', options, "relics.txt")
     
 st.title("Passive Solver")
