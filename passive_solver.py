@@ -65,13 +65,8 @@ results = []
 
 st.sidebar.table(allrelics)
 
-targetpassives = st.multiselectbox("Welke passives wil je?", df.columns)
+targetpassives = st.multiselect("Welke passives wil je?", df.columns)
 
-# targetpassive = st.selectbox('Welke passive (1) wil je?',
-#      df.columns)
-
-# targetpassive2 = st.selectbox('Welke passive (2) wil je?',
-#      df.columns)
 
 numrelics = st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=5, step=1)
 
