@@ -73,6 +73,7 @@ numrelics = st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, v
 reqnumrelics = []
 for i in targetpassives:
     reqnumrelics.append(int(df[i][0]))
+    st.write("reqnumrelics = ", reqnumrelics)
     
 #reqrelics = [int(df[targetpassive][0]), int(df[targetpassive2][0])]
 
