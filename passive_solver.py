@@ -91,7 +91,7 @@ if st.checkbox("Verplichte relics?"):   #multiselect
     # l1 = list(set(df[targetpassive].values[1:]))[1:]
     # l2 = list(set(df[targetpassive2].values[1:]))[1:]
     
-    reqfrags = st.selectbox("Welke frag moet erin zitten?", flat_list) #flatlist
+    reqfrags = st.multiselect("Welke frag moet erin zitten?", flat_list) #flatlist
     
     
     if numrelics < max(reqnumrelics): #len
