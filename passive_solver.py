@@ -42,7 +42,6 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          saved_relics = [reli.replace("'", "") for reli in saved_relics]
          saved_relics = [reli.replace('"', '') for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
-         st.sidebar.table(allrelics)
 
     if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
           st.write(f"Relics die je hebt geupload")
@@ -50,7 +49,6 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
           minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
-          st.sidebar.table(allrelics)
           st.download_button('Download je relics', str(allrelics), "relics.txt", mime='text/csv')
     options = st.multiselect("Of selecteer relics die je hebt/voeg toe aan wat je net hebt geupload:", allrelics)
     if st.checkbox("Gebruik dit"):
@@ -61,6 +59,7 @@ st.title("Passive Solver")
 
 results = []
 
+st.sidebar.table(allrelics)
 
 targetpassive = st.selectbox('Welke passive (1) wil je?',
      df.columns)
