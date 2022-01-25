@@ -38,9 +38,8 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          # Can be used wherever a "file-like" object is accepted:
          stringio = StringIO(uploaded_file.getvalue().decode("utf-8"))
          string_data = stringio.read()
-         saved_relics = string_data.strip('][').split(', ')
-         saved_relics = [reli.replace("'", "") for reli in saved_relics]
-         saved_relics = [reli.replace('"', '') for reli in saved_relics]
+         saved_relics = string_data.split(',')
+         #saved_relics = [reli.replace('"', '') for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
 
     if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
@@ -49,11 +48,14 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
           minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
-          st.download_button('Download je relics', str(allrelics), "relics.txt", mime='text/csv')
+          csvlist = ",".join(allrelics)
+          st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
+          
     options = st.multiselect("Of selecteer relics die je hebt/voeg toe aan wat je net hebt geupload:", allrelics)
     if st.checkbox("Gebruik dit"):
           allrelics = [value for value in allrelics if value in options]
-    st.download_button('Download je relics', str(options), "relics.txt", mime='text/csv')
+    csvlist = ",".join(allrelics)
+    st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
     
 st.title("Passive Solver")
 
