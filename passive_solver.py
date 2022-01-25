@@ -29,8 +29,9 @@ def valid(testlist, combinedlists, reqnumrelics): # (testlist, combinedlists?, r
     length_overlaplists = []
     for overlaplist in overlapsuperlist: 
         length_overlaplists.append(len(overlaplist))
-        
-    if min(length_overlaplists-reqnumrelics) >= 0:
+    
+    subtractedlist = [element1 - element2 for (element1, element2) in zip(length_overlaplists, reqnumrelics)]
+    if min(substractedlist) >= 0:
         return True
     else:
         return False
