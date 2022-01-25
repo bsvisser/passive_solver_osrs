@@ -82,7 +82,7 @@ for i in targetpassives:
 masterlist = []
 for tp in targetpassives:
     masterlist.append(list(set(df[tp].values[1:]))[1:])
-print(f"Masterlist: {masterlist}")
+st.write(f"Masterlist: {masterlist}")
 
 reqfrags = False
 
