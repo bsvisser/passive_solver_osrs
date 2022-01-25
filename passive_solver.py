@@ -101,6 +101,7 @@ if st.button("Run"):
     for possibility in combinations:
         st.spinner(text="In progress...")
         if len(set(possibility)) < len(possibility) or np.nan in possibility:
+            print(f"len issues: {possibility}")
             pass
         else:
             if valid(possibility, masterlist, reqnumrelics):
@@ -109,6 +110,8 @@ if st.button("Run"):
                     pass
                 else:
                     results.append(list(set(possibility)))
+            else:
+                print(f"valid issues {possibility}")
 
     st.table(set(map(tuple, results)))
 
