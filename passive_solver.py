@@ -20,6 +20,7 @@ if reload_data:
 allrelics = df.values[1:].ravel()
 allrelics = sorted(list(set(allrelics.tolist()))[1:])
 b_allrelics = allrelics
+st.sidebar.table(allrelics)
 
 def valid(testlist, list1, list2, reqrelics):
     overlap_list1 = [value for value in testlist if value in list1]
@@ -45,7 +46,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          
     if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
           st.write(f"Relics die je hebt geupload")
-          st.sidebar.table(allrelics)
+          
           minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
