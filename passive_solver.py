@@ -80,11 +80,11 @@ masterlist = []
 
 for tp in targetpassives:
     masterlist.append(list(set(df[tp].values[1:]))[1:])
+flat_list =[item for sublist in masterlist for item in sublist]
 
 reqfrags = False
 
 if st.checkbox("Verplichte relics?"):   #multiselect
-    flat_list =[item for sublist in masterlist for item in sublist]
     
     reqfrags = st.multiselect("Welke frag moet erin zitten?", flat_list) #flatlist
     
