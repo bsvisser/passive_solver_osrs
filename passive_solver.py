@@ -82,7 +82,7 @@ for i in targetpassives:
 masterlist = []
 for tp in targetpassives:
     masterlist.append(list(set(df[tp].values[1:]))[1:])
-print(masterlist)
+print(f"Masterlist: {masterlist}")
 
 reqfrags = False
 
@@ -115,12 +115,13 @@ if st.button("Run"):
             pass
         else:
             if valid(possibility, masterlist, reqnumrelics):
-                print(reqfrags)
+                #print(reqfrags)
                 if reqfrags != False and not (set(reqfrags).issubset(set(possibility))):
                     pass
                 else:
                     results.append(list(set(possibility)))
 
     st.table(set(map(tuple, results)))
+
                         
     
