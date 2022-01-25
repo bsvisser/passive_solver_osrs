@@ -52,7 +52,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
           st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
           
     options = st.multiselect("Of selecteer relics die je hebt/voeg toe aan wat je net hebt geupload:", allrelics)
-    if options:
+    if len(options)>1:
           allrelics = [value for value in allrelics if value in options]
           csvlist = ",".join(allrelics)
     st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
