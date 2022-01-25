@@ -87,7 +87,7 @@ if st.checkbox("Verplichte relic?"):
 if st.checkbox("Verplichte relic 2?"):
     l1 = list(set(df[targetpassive].values[1:]))[1:]
     l2 = list(set(df[targetpassive2].values[1:]))[1:]
-    reqfrags2 = st.selectbox("Welke frag moet erin zitten?", l1+l2)
+    reqfrags2 = st.selectbox("Welke frag moet erin zitten?", l1+l2, key ="uniquekey")
 if numrelics < reqrelics[0] or numrelics < reqrelics[1]:
         st.error("Kan niet geactiveerd worden, te weinig relics")
         
