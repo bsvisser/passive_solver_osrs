@@ -78,11 +78,16 @@ reqrelics = [int(df[targetpassive][0]), int(df[targetpassive2][0])]
 
 
 reqfrags = False
+reqfrags2 = False
+
 if st.checkbox("Verplichte relic?"):
     l1 = list(set(df[targetpassive].values[1:]))[1:]
     l2 = list(set(df[targetpassive2].values[1:]))[1:]
     reqfrags = st.selectbox("Welke frag moet erin zitten?", l1+l2)
-
+if st.checkbox("Verplichte relic 2?"):
+    l1 = list(set(df[targetpassive].values[1:]))[1:]
+    l2 = list(set(df[targetpassive2].values[1:]))[1:]
+    reqfrags2 = st.selectbox("Welke frag moet erin zitten?", l1+l2)
 if numrelics < reqrelics[0] or numrelics < reqrelics[1]:
         st.error("Kan niet geactiveerd worden, te weinig relics")
         
@@ -103,6 +108,8 @@ if st.button("Run"):
             if valid(possibility, list1, list2, reqrelics):
                 print(reqfrags)
                 if reqfrags != False and reqfrags not in possibility:
+                    pass
+                elif reqfrags2 != False and reqfrags2 not in possibility:
                     pass
                 else:
                     results.append(list(set(possibility)))
