@@ -55,7 +55,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
     if len(options)>1:
           allrelics = [value for value in allrelics if value in options]
           csvlist = ",".join(allrelics)
-    st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
+          st.download_button('Download je relics', str(csvlist), "relics.txt", mime='text/csv')
     
 st.title("Passive Solver")
 
