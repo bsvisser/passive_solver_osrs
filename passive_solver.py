@@ -44,7 +44,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          allrelics = [value for value in allrelics if value in saved_relics]
          
     if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
-          print(f"Relics die je hebt geupload: {allrelics}")
+          st.write(f"Relics die je hebt geupload: {allrelics}")
           minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
