@@ -94,8 +94,8 @@ if st.checkbox("Verplichte relics?"):   #multiselect
     reqfrags = st.selectbox("Welke frag moet erin zitten?", flat_list) #flatlist
     
     
-if numrelics < max(reqnumrelics) and len(reqnumrelics) != 0: #len
-        st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
+    if numrelics < max(reqnumrelics): #len
+            st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
         
 if st.button("Run"):
     st.sidebar.table(allrelics)
