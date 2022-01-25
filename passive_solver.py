@@ -45,7 +45,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          
     if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
           print(f"Relics die je hebt geupload: {allrelics}")
-          minlist = b_allrelics-allrelics
+          minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
           st.download_button('Download je relics', str(allrelics), "relics.txt", mime='text/csv')
