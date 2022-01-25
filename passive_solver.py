@@ -96,7 +96,6 @@ if st.button("Run"):
     st.sidebar.table(allrelics)
 
     comblist = [value for value in allrelics if value in flat_list]
-    st.write(comblist)
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
