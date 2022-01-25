@@ -21,12 +21,16 @@ allrelics = df.values[1:].ravel()
 allrelics = sorted(list(set(allrelics.tolist()))[1:])
 b_allrelics = allrelics
 
-def valid(testlist, list1, list2, reqrelics):
-    overlap_list1 = [value for value in testlist if value in list1]
-    overlap_list2 = [value for value in testlist if value in list2]
+def valid(testlist, combinedlists, reqnumrelics): # (testlist, combinedlists?, reqnumrelics)
+    overlapsuperlist = []
+    for reliclist in combinedlists:
+        overlapsuperlist.append([value for value in testlist if value in reliclist])
     
-    
-    if len(overlap_list1) >= reqrelics[0] and len(overlap_list2) >= reqrelics[1]:
+    length_overlaplists = []
+    for overlaplist in overlapsuperlist: 
+        length_overlaplists.append(len(overlaplist))
+        
+    if min(length_overlaplists-reqnumrelics) >= 0:
         return True
     else:
         return False
@@ -42,9 +46,7 @@ with st.expander("Kies relics die je hebt, sla ze op of importeer ze", expanded=
          #saved_relics = [reli.replace('"', '') for reli in saved_relics]
          allrelics = [value for value in allrelics if value in saved_relics]
 
-    if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):
-          st.write(f"Relics die je hebt geupload")
-          
+    if st.checkbox("Update mijn lijst (upload eerst je file en klik dan hier)"):          
           minlist = list(set(b_allrelics) - set(allrelics)) + list(set(b_allrelics) - set(allrelics))
           n_opt = st.multiselect("Voeg de relics die je nieuw hebt toe:", minlist)
           allrelics += n_opt
@@ -63,41 +65,53 @@ results = []
 
 st.sidebar.table(allrelics)
 
-targetpassive = st.selectbox('Welke passive (1) wil je?',
-     df.columns)
+targetpassives = st.multiselectbox("Welke passives wil je?", df.columns)
 
-targetpassive2 = st.selectbox(
-    'Welke passive (2) wil je?',
-     df.columns)
+# targetpassive = st.selectbox('Welke passive (1) wil je?',
+#      df.columns)
 
-if targetpassive == targetpassive2:
-    st.error("Kan niet hetzelfde zijn")
+# targetpassive2 = st.selectbox('Welke passive (2) wil je?',
+#      df.columns)
 
-numrelics= st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=5, step=1)
-reqrelics = [int(df[targetpassive][0]), int(df[targetpassive2][0])]
+numrelics = st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=5, step=1)
 
+reqnumrelics = []
+for i in targetpassives:
+    reqnumrelics.append(int(df[i][0]))
+    
+#reqrelics = [int(df[targetpassive][0]), int(df[targetpassive2][0])]
+
+# reqfrags = False
+# reqfrags2 = False
+
+masterlist = []
+for tp in targetpassives:
+    masterlist.append(list(set(df[tp].values[1:]))[1:])
+print(masterlist)
 
 reqfrags = False
-reqfrags2 = False
 
-if st.checkbox("Verplichte relic?"):
-    l1 = list(set(df[targetpassive].values[1:]))[1:]
-    l2 = list(set(df[targetpassive2].values[1:]))[1:]
-    reqfrags = st.selectbox("Welke frag moet erin zitten?", l1+l2)
-if st.checkbox("Verplichte relic 2?"):
-    l1 = list(set(df[targetpassive].values[1:]))[1:]
-    l2 = list(set(df[targetpassive2].values[1:]))[1:]
-    reqfrags2 = st.selectbox("Welke frag moet erin zitten?", l1+l2, key ="uniquekey")
-if numrelics < reqrelics[0] or numrelics < reqrelics[1]:
-        st.error("Kan niet geactiveerd worden, te weinig relics")
+if st.checkbox("Verplichte relics?"):   #multiselect
+    flat_list =[item for sublist in masterlist for item in sublist]
+    # l1 = list(set(df[targetpassive].values[1:]))[1:]
+    # l2 = list(set(df[targetpassive2].values[1:]))[1:]
+    
+    reqfrags = st.selectbox("Welke frag moet erin zitten?", flat_list) #flatlist
+    
+    
+if numrelics < max(reqnumrelics): #len
+        st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
         
 if st.button("Run"):
     st.sidebar.table(allrelics)
-    list1 = list(df[targetpassive][1:])
-    list2 = list(df[targetpassive2][1:])
+    #for tp in targetpassives:
+    # generate list of lists containing the fragments
+    # flat_list =[item for sublist in list_of_lists for item in sublist]
+    # list1 = list(df[targetpassive][1:]) #relics
+    # list2 = list(df[targetpassive2][1:])
     
-    comblist = list1+list2
-    comblist = [value for value in allrelics if value in comblist]
+    #comblist = list1+list2
+    comblist = [value for value in allrelics if value in masterlist]
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
@@ -105,11 +119,9 @@ if st.button("Run"):
         if len(set(possibility)) < len(possibility) or np.nan in possibility:
             pass
         else:
-            if valid(possibility, list1, list2, reqrelics):
+            if valid(possibility, masterlist, reqnumrelics):
                 print(reqfrags)
-                if reqfrags != False and reqfrags not in possibility:
-                    pass
-                elif reqfrags2 != False and reqfrags2 not in possibility:
+                if reqfrags != False and not (set(reqfrags).issubset(set(possibility))):
                     pass
                 else:
                     results.append(list(set(possibility)))
