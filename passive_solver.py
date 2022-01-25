@@ -79,15 +79,11 @@ masterlist = []
 
 for tp in targetpassives:
     masterlist.append(list(set(df[tp].values[1:]))[1:])
-    st.write(list(set(df[tp].values[1:]))[1:])
-st.write(f"Masterlist: {masterlist}")
 
 reqfrags = False
 
 if st.checkbox("Verplichte relics?"):   #multiselect
     flat_list =[item for sublist in masterlist for item in sublist]
-    # l1 = list(set(df[targetpassive].values[1:]))[1:]
-    # l2 = list(set(df[targetpassive2].values[1:]))[1:]
     
     reqfrags = st.multiselect("Welke frag moet erin zitten?", flat_list) #flatlist
     
@@ -97,14 +93,9 @@ if st.checkbox("Verplichte relics?"):   #multiselect
         
 if st.button("Run"):
     st.sidebar.table(allrelics)
-    #for tp in targetpassives:
-    # generate list of lists containing the fragments
-    # flat_list =[item for sublist in list_of_lists for item in sublist]
-    # list1 = list(df[targetpassive][1:]) #relics
-    # list2 = list(df[targetpassive2][1:])
-    
-    #comblist = list1+list2
+
     comblist = [value for value in allrelics if value in masterlist]
+    st.write(comblist)
     combinations = itertools.combinations(comblist, numrelics)
     
     for possibility in combinations:
