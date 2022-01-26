@@ -79,7 +79,7 @@ for i in targetpassives:
 masterlist = []
 
 for tp in targetpassives:
-    st.write(set(df[tp].values))
+    st.write(set(df[tp].values[1:]))
     masterlist.append(list(set(df[tp].values[1:]))[1:])
 flat_list =[item for sublist in masterlist for item in sublist]
 
