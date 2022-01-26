@@ -88,7 +88,7 @@ if st.checkbox("Verplichte relics?"):   #multiselect
     
     reqfrags = st.multiselect("Welke frag moet erin zitten?", flat_list) #flatlist
     
-    
+    print(reqnumrelics)
     if numrelics < max(reqnumrelics): #len
             st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
         
@@ -111,7 +111,8 @@ if st.button("Run"):
                     else:
                         results.append(sorted(list(set(possibility))))
                 else:
-                    print(f"valid issues {possibility}")
+                    pass
+                    #print(f"valid issues {possibility}")
 
     st.table(set(map(tuple, results)))
 
