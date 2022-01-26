@@ -80,6 +80,7 @@ masterlist = []
 
 for tp in targetpassives:
     masterlist.append(list(set(df[tp].values[1:]))[1:])
+    st.write(masterlist)
 flat_list =[item for sublist in masterlist for item in sublist]
 
 reqfrags = False
