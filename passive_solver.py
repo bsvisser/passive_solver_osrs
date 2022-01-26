@@ -104,7 +104,6 @@ if st.button("Run"):
         combinations = itertools.combinations(comblist, numrelics)
         
         for possibility in combinations:
-            st.write(possibility)
             if len(set(possibility)) < len(possibility) or np.nan in possibility:
                 st.write(f"len issues: {possibility}")
                 pass
