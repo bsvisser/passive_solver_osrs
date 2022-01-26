@@ -109,7 +109,7 @@ if st.button("Run"):
                     if reqfrags != False and not (set(reqfrags).issubset(set(possibility))):
                         pass
                     else:
-                        results.append(list(set(possibility)))
+                        results.append(sorted(list(set(possibility))))
                 else:
                     print(f"valid issues {possibility}")
 
