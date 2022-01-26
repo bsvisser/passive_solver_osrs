@@ -92,7 +92,6 @@ if st.checkbox("Verplichte relics?"):   #multiselect
             st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
         
 if st.button("Run"):
-    st.write(reqnumrelics)
     with st.spinner(text="In progress..."):
         st.sidebar.table(allrelics)
     
@@ -101,18 +100,19 @@ if st.button("Run"):
         
         for possibility in combinations:
             if len(set(possibility)) < len(possibility) or np.nan in possibility:
-                print(f"len issues: {possibility}")
+                st.write(f"len issues: {possibility}")
                 pass
             else:
                 if valid(possibility, masterlist, reqnumrelics):
                     #print(reqfrags)
                     if reqfrags != False and not (set(reqfrags).issubset(set(possibility))):
+                        st.write(f"reqfrags issue {possibility}")
                         pass
                     else:
                         results.append(sorted(list(set(possibility))))
                 else:
+                    st.write(f"valid issues {possibility}")
                     pass
-                    #print(f"valid issues {possibility}")
 
     st.table(set(map(tuple, results)))
 
