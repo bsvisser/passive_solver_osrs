@@ -94,8 +94,9 @@ if st.checkbox("Verplichte relics?"):   #multiselect
 if st.button("Run"):
     with st.spinner(text="In progress..."):
         st.sidebar.table(allrelics)
-    
+        
         comblist = [value for value in allrelics if value in flat_list]
+        st.write(comblist)
         combinations = itertools.combinations(comblist, numrelics)
         
         for possibility in combinations:
