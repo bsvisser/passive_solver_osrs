@@ -79,8 +79,8 @@ for i in targetpassives:
 masterlist = []
 
 for tp in targetpassives:
+    st.write(df[t].values)
     masterlist.append(list(set(df[tp].values[1:]))[1:])
-    st.write(masterlist)
 flat_list =[item for sublist in masterlist for item in sublist]
 
 reqfrags = False
@@ -97,9 +97,6 @@ if st.button("Run"):
         st.sidebar.table(allrelics)
         
         comblist = [value for value in allrelics if value in flat_list]
-        st.write(comblist)
-        st.write(flat_list)
-        st.write(allrelics)
         combinations = itertools.combinations(comblist, numrelics)
         
         for possibility in combinations:
