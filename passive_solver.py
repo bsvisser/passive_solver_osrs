@@ -92,7 +92,7 @@ if st.checkbox("Verplichte relics?"):   #multiselect
             st.error("Een set effect kan niet geactiveerd worden, te weinig relics")
         
 if st.button("Run"):
-    print(reqnumrelics)
+    st.write(reqnumrelics)
     with st.spinner(text="In progress..."):
         st.sidebar.table(allrelics)
     
