@@ -81,7 +81,7 @@ masterlist = []
 
 for tp in targetpassives:
     withnan_list = list(set(df[tp].values[1:]))
-    nonanlist = [x for x in withnan_list if math.isnan(x) == False]
+    nonanlist = [i for i in withnan_list if i != "nan"]
     st.write(nonanlist)
     masterlist.append(nonanlist)
 flat_list =[item for sublist in masterlist for item in sublist]
