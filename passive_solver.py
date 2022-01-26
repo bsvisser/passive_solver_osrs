@@ -105,18 +105,18 @@ if st.button("Run"):
         
         for possibility in combinations:
             if len(set(possibility)) < len(possibility) or np.nan in possibility:
-                st.write(f"len issues: {possibility}")
+                #st.write(f"len issues: {possibility}")
                 pass
             else:
                 if valid(possibility, masterlist, reqnumrelics):
                     #print(reqfrags)
                     if reqfrags != False and not (set(reqfrags).issubset(set(possibility))):
-                        st.write(f"reqfrags issue {possibility}")
+                        #st.write(f"reqfrags issue {possibility}")
                         pass
                     else:
                         results.append(sorted(list(set(possibility))))
                 else:
-                    st.write(f"valid issues {possibility}")
+                    #st.write(f"valid issues {possibility}")
                     pass
 
     st.table(set(map(tuple, results)))
