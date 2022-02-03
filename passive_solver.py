@@ -70,7 +70,7 @@ st.sidebar.table(allrelics)
 targetpassives = st.multiselect("Welke passives wil je?", df.columns)
 
 
-numrelics = st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=5, step=1)
+numrelics = st.slider("Hoeveel relic slots heb je?", min_value=1, max_value=7, value=7, step=1)
 
 reqnumrelics = []
 for i in targetpassives:
